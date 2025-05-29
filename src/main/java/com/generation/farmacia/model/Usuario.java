@@ -41,7 +41,7 @@ public class Usuario {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
-	private List<Produto> produto;
+	private List<Produto> produtos;
 
 	
 	public Long getId() {
@@ -78,11 +78,11 @@ public class Usuario {
 
 	
 	public List<Produto> getProduto() {
-		return this.produto;
+		return this.produtos;
 	}
 
 	public void setPostagem(List<Produto> produto) {
-		this.produto = produto;
+		this.produtos = produto;
 	}
 
 }
