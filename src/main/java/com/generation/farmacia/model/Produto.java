@@ -2,11 +2,14 @@ package com.generation.farmacia.model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -31,6 +34,10 @@ public class Produto {
 	@Size(min = 10, max = 1000, message = "O atributo descrição deve ter no minimo 10 e no máximo 1000 caracteres.")
 	@Pattern(regexp = "^[^0-9].*", message = "A descrição não pode ser apenas numérico")
 	private String descricao;
+	
+	@ManyToOne
+    @JsonIgnoreProperties("produtos")
+    private Categoria categoria;
 
 
 	public Long getId() {
@@ -56,6 +63,14 @@ public class Produto {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 
 	
